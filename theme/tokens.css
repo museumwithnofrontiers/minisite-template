@@ -1,0 +1,11 @@
+/*
+ * The visual identity of this exhibition: every value its legacy stylesheet
+ * set (<exhibition>/_styles.css, and _styles_ar.css over it for Arabic),
+ * transcribed by inventory-app's scripts/minisites/legacy-theme.mjs, which
+ * scripts/minisites/legacy-minisite.mjs runs. viewer-layout's minisite.css
+ * lays the pages out with them, and falls back to what the browser drew on
+ * legacy for a value left unset. This file belongs to the webdesigner: change
+ * a value here.
+ *
+ * TODO(dataset): written by scripts/minisites/legacy-minisite.mjs.
+ */
