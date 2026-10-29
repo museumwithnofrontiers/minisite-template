@@ -3,7 +3,8 @@ import { mergeMessages } from '@museumwnf/viewer-core'
 import {
   checkOfferedLanguages, checkRoutes, checkSectionMeta, checkTextsRendered, mountSite,
 } from '@museumwnf/viewer-core/testing'
-import { catalogues as sharedTexts } from '@museumwnf/viewer-i18n/minisite'
+import { labelSet } from '@museumwnf/viewer-layout/minisite'
+import { catalogues as sharedTexts } from '../src/texts.js'
 import { readFileSync } from 'node:fs'
 import ownTexts from '../locales/en.json'
 import config from '../src/dataset.config.js'
@@ -30,7 +31,7 @@ describe('website smoke test', () => {
     await vi.waitFor(() => expect(host.querySelector('.mwnf-minisite-home__title')?.textContent.trim()).toBeTruthy(), { timeout: 20000 })
     // The introduction and one entry per theme.
     expect(host.querySelectorAll('.mwnf-minisite-home__menu div').length).toBeGreaterThan(1)
-    expect(host.querySelectorAll('.mwnf-minisite-partners__logos a').length).toBe(config.minisite.curators.length)
+    expect(host.querySelectorAll('.mwnf-minisite-partners__curator').length).toBe(config.minisite.curators.length)
     // The frame: the menu over the footer, legacy's links in its order.
     expect(host.querySelectorAll('.mwnf-minisite-menu li').length).toBe(config.navigation.menu.length)
     app.unmount()
@@ -88,7 +89,7 @@ describe('website smoke test', () => {
     const { app, host } = await mountSite(config, messages, '#/exhibition/1/1?lang=en')
     await vi.waitFor(() => expect(host.querySelector('.mwnf-minisite-page__caption')).not.toBeNull(), { timeout: 20000 })
     expect(host.textContent).toContain('Exhibition homepage')
-    expect(checkTextsRendered(host, { namespaces: ['minisite', '__SITE_NAMESPACE__', 'core', 'layout'] })).toEqual([])
+    expect(checkTextsRendered(host, { namespaces: [labelSet(config.minisite), '__SITE_NAMESPACE__', 'core', 'layout'] })).toEqual([])
     app.unmount()
   }, 30000)
 })
