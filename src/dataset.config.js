@@ -6,17 +6,18 @@ import {
 import exhibition from './minisite.json'
 
 // The whole declaration of this website: one of legacy Discover Islamic Art's
-// or Discover Baroque Art's virtual exhibitions, or Discover Islamic Art's
-// Artistic Introduction (minisite.json names it and its family), a website of
-// its own. Its pages are every mini-site's — viewer-layout's `./minisite`,
-// legacy's virtual exhibition pages, or the Artistic Introduction's own in
-// their frame — and what is this site's own is minisite.json (what legacy
-// configured for it alone), its theme (theme/tokens.css) and its legacy
-// pictures (theme/assets/legacy/, SOURCES.json names where each was taken
-// from), all three written by inventory-app's scripts/minisites/legacy-minisite.mjs.
-// Its records come from the data package, its texts from viewer-i18n's bundle
-// of its family (`minisite`, `minisiteBaroque`, `minisiteArtIntro`; and
-// locales/, which may overload any).
+// virtual exhibitions, or its Artistic Introduction (minisite.json names it
+// and its family), a website of its own. Its pages are every Discover Islamic
+// Art mini-site's — viewer-layout's `./minisite`, legacy's virtual exhibition
+// pages, or the Artistic Introduction's own in their frame — and what is this
+// site's own is minisite.json (what legacy configured for it alone), its theme
+// (theme/tokens.css) and its legacy pictures (theme/assets/legacy/,
+// SOURCES.json names where each was taken from), all three written by
+// inventory-app's scripts/minisites/legacy-minisite.mjs. Its records come from
+// the data package, its texts from viewer-i18n's bundle of its family
+// (`minisite`, `minisiteArtIntro`; and locales/, which may overload any).
+// Discover Baroque Art's virtual exhibitions, a product of their own, start
+// from baroqueart-minisite-template.
 
 const { manifest } = useDataPackage()
 
@@ -31,18 +32,13 @@ const languages = offeredLanguages()
 
 // What the sites of each family shared: the website that carried them on
 // legacy (its header, menu and sheet links lead there), the records legacy
-// named no country for (every family's pages kept Islamic Art's rule) and the
+// named no country for and the
 // Word document's title, legacy's own (the Artistic Introduction offered none).
 const FAMILIES = {
   ISL: {
     parent: 'https://museumwithnofrontiers.github.io/islamicart',
     noCountry: ISLAMICART_NO_COUNTRY,
     documentTitle: 'MWNF DISCOVER ISLAMIC ART: Exhibition',
-  },
-  BAR: {
-    parent: 'https://museumwithnofrontiers.github.io/baroqueart',
-    noCountry: ISLAMICART_NO_COUNTRY,
-    documentTitle: 'MWNF DISCOVER BAROQUE ART - Exhibition',
   },
   GAI: {
     parent: 'https://museumwithnofrontiers.github.io/islamicart',
@@ -77,7 +73,7 @@ export default {
 
   navigation: artintro
     ? artintroNavigation({ languages: languageLabels(languages), parent })
-    : minisiteNavigation({ languages: languageLabels(languages), parent, family }),
+    : minisiteNavigation({ languages: languageLabels(languages), parent }),
 
   // What legacy configured for this site alone (its libs/config.inc.php and
   // index.php, and its family's libs/config.inc.php).
@@ -92,16 +88,11 @@ export default {
       })
     : minisiteSettings({
         parent,
-        family,
         // The home menu's second column starts at this position ($_HOME_MENU_COL2).
         menuSecondColumnFrom: exhibition.menuSecondColumnFrom,
         // The curators the home page credits (HOMELOGOS): a partner, or a name and
         // a country as legacy wrote them, each with its logo and the space after it.
         curators: exhibition.curators,
-        // Discover Baroque Art's designer, credited beside the curators.
-        design: exhibition.design,
-        // Discover Baroque Art's home picture (#banner), when its exhibition drew one.
-        banner: exhibition.banner,
         // The introduction's map ($INTROPAGE_HAVEMAP): one picture per language,
         // and one more per further map legacy drew.
         map: exhibition.maps
