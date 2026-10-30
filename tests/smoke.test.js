@@ -66,7 +66,8 @@ describe.skipIf(artintro)('a virtual exhibition', () => {
   it('draws the introduction: its text and its captioned pictures', async () => {
     const { app, host } = await mountSite(config, messages, '#/introduction?lang=en')
     await vi.waitFor(() => expect(host.querySelector('.mwnf-minisite-intro__content')?.textContent.trim()).toBeTruthy(), { timeout: 20000 })
-    expect(host.querySelectorAll('.mwnf-minisite-intro-item strong').length).toBeGreaterThan(0)
+    // The captions come with the items' texts, which may arrive after the introduction's.
+    await vi.waitFor(() => expect(host.querySelectorAll('.mwnf-minisite-intro-item strong').length).toBeGreaterThan(0), { timeout: 20000 })
     app.unmount()
   }, 30000)
 
