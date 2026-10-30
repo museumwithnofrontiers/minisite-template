@@ -17,6 +17,18 @@ its texts from `@museumwnf/viewer-i18n/minisite`, so a change there reaches
 every mini-site at once. A mini-site keeps only what legacy configured for its
 exhibition alone: its settings, its theme, its pictures and its texts.
 
+**Its families.** `src/minisite.json` names the family a mini-site belongs to,
+and `src/dataset.config.js` reads it:
+
+| `family` | What it is | Its pages | Its texts |
+| --- | --- | --- | --- |
+| `ISL` | a Discover Islamic Art virtual exhibition (`exhibitions/ISL/<folder>/`) | `./minisite` | `@museumwnf/viewer-i18n/minisite` |
+| `BAR` | a Discover Baroque Art virtual exhibition (`exhibitions/BAR/<folder>/`) | `./minisite`, with Baroque Art's captions and home band | `@museumwnf/viewer-i18n/minisiteBaroque` |
+| `GAI` | Discover Islamic Art's Artistic Introduction (`gai/ISL/`) | `./minisite`'s frame, with pages of its own (`ArtIntroHome`, `artintroRoutes()`) | `@museumwnf/viewer-i18n/minisiteArtIntro` |
+
+inventory-app's `scripts/minisites/legacy-minisite.mjs` writes the family with
+the rest of the site's own values, and the site's `package.json`
+(`viewerI18n.class`), `index.html` and `src/texts.js` follow it.
 A gallery starts from
 [`gallery-template`](https://github.com/museumwithnofrontiers/gallery-template),
 an exhibition from
