@@ -44,8 +44,8 @@ describe('website smoke test', () => {
     expect(config.features.entities).toEqual([])
   })
 
-  it('offers the languages the package declares, where the items carry them', () => {
-    expect(checkOfferedLanguages(config)).toEqual([])
+  it('offers the languages the package declares, where the exhibition has texts in them', () => {
+    expect(checkOfferedLanguages(config, { entity: 'collections' })).toEqual([])
     expect(config.languages.length).toBeGreaterThan(0)
     expect(config.navigation.languages.map((l) => l.code)).toEqual(config.languages)
   })
