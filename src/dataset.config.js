@@ -28,7 +28,9 @@ const chrome = import.meta.glob('../theme/assets/**/*.{jpg,jpeg,png,gif,svg}', {
 })
 
 // The languages the exhibition has a title in: legacy's switcher offered them.
-const languages = offeredLanguages()
+// Its texts are the collection's, and a language can carry them where none of
+// its items has a translation.
+const languages = offeredLanguages({ entity: 'collections' })
 
 // What the sites of each family shared: the website that carried them on
 // legacy (its header, menu and sheet links lead there), the records legacy
